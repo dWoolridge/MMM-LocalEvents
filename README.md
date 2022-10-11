@@ -24,3 +24,4 @@ npm install
 Pull requests are welcome.
 
 ## TO DO
+- Add functionality for type: "nextweek" -AND- "nextmonth"
