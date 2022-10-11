@@ -1,0 +1,26 @@
+{
+  "name": "Magic-Mirror-Module-LocalEvents",
+  "version": "1.0",
+  "description": "Local event listing module for MagicMirror²",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dWoolridge/MMM-LocalEvents"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "module",
+    "events",
+    "local"
+  ],
+  "author": "Doug Woolridge",
+  "contributors": "git+https://github.com/dWoolridge/MMM-WeatherHourlyByDay/graphs/contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "git+https://github.com/dWoolridge/MMM-LocalEvents/issues"
+  },
+  "homepage": "git+https://github.com/dWoolridge/MMM-LocalEvents#readme",
+  "dependencies": {
+    "axios": "^0.21.2"
+  }
+}
