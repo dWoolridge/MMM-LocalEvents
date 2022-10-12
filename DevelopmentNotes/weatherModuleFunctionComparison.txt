@@ -1,0 +1,44 @@
+======
+NOTES:
+======
+- Had to use Axios to GET google website...
+    "fetch" had a CORS error, and ?google? would allow header re-assignment
+  - Had to use Google Chrome header in Axios to get data in the expected format:
+    Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+- Axios was only available to the node_helper.js file.  Could not access it from within the eventProvider class.
+  = Led to sending notifications between node_helper and the eventProvider class.
+  - Note the eventProvider class can only sendSocketNotifications and cannot use socketNotificationReceived.
+ 
+
+=========================
+weather (default Module)
+=========================
+
+file	         function               Does this
+============   ====================   ===========================================================
+weather.js	   scheduleUpdate         this.weatherProvider.fetchWeatherForecast() [weathergov.js]
+		
+weathergov.js 	fetchWeatherForecast 	Gets JSON from weather.gov
+		                                  Sets forecast = weatherObject
+		                                  this.setWeatherForecast(forecast)
+		                                  this.updateAvailable [weather.js]
+		 
+weather.js	    updateAvailable       this.updateDOM(0)
+		                                  this.scheduleUpdate();
+		                                  this.sendNotification ("WEATHER_UPDATED", notification payload);
+
+=========================
+LocalEvents 
+=========================
+
+file	          function	            Does this
+============    ====================  ===========================================================
+MMM-Events.js	  scheduleUpdate	      sends "GET_DATA_FROM_URL" socket notification (to node_helper.js)
+		
+node_helper.js	socketNotificationReceived	this.getDataFromURL
+	              getDataFromURL        gets raw page from url
+		                                  sends socketNotification "RECEIVED_DATA_FROM_URL" with webpage data as payload
+		
+MMM-Events.js   socketNotificationReceived	Calls this.eventProvider.getEventArray(payload)
+		
+google.js	      getEventArray         creates eventObject array from payload
