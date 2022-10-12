@@ -1,0 +1,42 @@
+-------------------
+Google event block:
+-------------------
+
+
+https://www.google.com/search?q=events+fond+du+lac%2C+wi&events&rciv=evn
+---------------------------------------------------------
+List at top, looks to be 1 week of data, Sorted in order:
+---------------------------------------------------------
+ 
+  Want to get Title, Location, and StartDate/Time
+
+  Need to pull from 2 parts of google webpage, there should not be duplicates between the 2 parts
+
+  1) Find sequence:
+    CHROME
+    THIS ONLY GETS 13 OF THE 32 ENTRIES
+      "data-entityname"                              <-- =
+      "<div class="bVj5Zb FozYP">"       --> [Title] <-- </div>
+      "<div class="TCYkdd FozYP"><span>" --> [Location] <-- </span></div>
+      "<div class="t3gkGd"><div>"        --> [Fri, Oct 7] <-- </div>
+
+      <a jscontroller="e8Ezlf" jsname="I4kCu" class="ct5Ked klitem-tr PZPZlf" aria-label="WAA Autumn Conference &amp; Trade Show" aria-selected="false" aria-setsize="32" data-entityid="/g/11s8z02rsk" data-entityname="WAA Autumn Conference &amp; Trade Show" href="/search?sxsrf=ALiCzsYd-r3Z_bHPq3h5qITgMcymqPgJCA:1665154708692&amp;q=waa+autumn+conference+%26+trade+show,+radisson+hotel+and+conference+center+fond+du+lac,+october+7&amp;stick=H4sIAAAAAAAAAOPgEOLUz9U3MMzNLjBS4tVP1zc0LLaoMjAqKs7WUs1OttLPyU9OLMnMz9NPziypLMkvz7MqLUjOz83MS1dILUvNKyl-xBjOLfDyxz1hKb9Ja05eY_TgIk6fkDgXm2teCVBWiFeKmwvhDCsmDaYqJg4GnkWs8eWJiQqJpSWluXkKyfl5aalFqXnJqQpqCiVFiSmpCsUZ-eU6CkBmZnFxfp5CRn5Jao5CYl4KstpkoF2pRQpp-UDhlFKFnMRkHYX85JL8JKCg-QQ2RgDhnVOaAgEAAA&amp;sa=X&amp;ved=2ahUKEwiuh6HXsM76AhXKIzQIHbRADIAQri56BAgiEAc" role="tab" title="WAA Autumn Conference &amp; Trade Show (Radisson Hotel and Conference Center Fond du Lac)" jsdata="Cls7rd;_;CnTyRM" jsaction="rcuQ6b:npT2md" data-hveid="CCIQBw" data-ved="2ahUKEwiuh6HXsM76AhXKIzQIHbRADIAQri56BAgiEAc">
+        <div aria-hidden="true" jsname="PeEi9b" class="gEYEQc x5W9xd qYvl9c klitem" tabindex="-1">
+          <div jsname="K0d9fd" class="MJfuMd" aria-hidden="true">
+            <div class="uoFCfc">
+              <div class="bVj5Zb FozYP">WAA Autumn Conference &amp; Trade Show</div>
+              <div class="TCYkdd FozYP"><span>Radisson Hotel and Conference Center Fond du Lac</span></div>
+            </div>
+            <div class="t3gkGd">
+              <div>Fri, Oct 7</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+  2) THE REMAINING 19 ENTRIES FOLLOW THIS FORMAT:
+
+    "class\x3d\x22bVj5Zb FozYP\x22\x3e"              --> [Title] <--       "\x3c/div\x3e"
+    "class\x3d\x22TCYkdd FozYP\x22\x3e\x3cspan\x3e"  --> [Location] <--    "\x3c/span\x3e\x3c/div\x3e\"
+    "\x3cdiv class\x3d\x22t3gkGd\x22\x3e\x3cdiv\x3e" --> [Sat, Oct 8] <--  "\x3c/div\x3e"
+    "\x3cdiv class\x3d\x22oonKPc\x22\x3e"            --> [10:00 AM] <--    "\x3c/div\x3e"
