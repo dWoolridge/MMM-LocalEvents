@@ -24,4 +24,6 @@ npm install
 Pull requests are welcome.
 
 ## TO DO
-- Add functionality for type: "nextweek" -AND- "nextmonth"
+- Fix formatting
+- Find out why the function fails in "MMM-LocalEvents.js-->updateAvailable"
+    const notificationPayload...
