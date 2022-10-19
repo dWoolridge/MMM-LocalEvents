@@ -21,6 +21,5 @@
   },
   "homepage": "git+https://github.com/dWoolridge/MMM-LocalEvents#readme",
   "dependencies": {
-    "axios": "^0.21.2"
   }
 }
