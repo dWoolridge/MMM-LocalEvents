@@ -53,5 +53,6 @@ npm install
 Pull requests are welcome.
 
 ## TO DO
+- Replace \x27, \x26, &amp with characters in event text
 - Consider adding functionality for a type:  daily/nextweek/nextmonth/etc.
 - 
