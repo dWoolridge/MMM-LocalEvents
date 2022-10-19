@@ -5,7 +5,7 @@
 
 ## Requires:
 - MagicMirror
-- Axios module 
+- Axios module (installed with MagicMirror)
 
 ## Manual install
 Go To ```MagicMirror/modules``` folder and then:
@@ -14,7 +14,21 @@ git clone https://github.com/dWoolridge/MMM-LocalEvents.git
 cd MMM-LocalEvents
 npm install
 ```
-## Configuration:
+## Configuration:  
+- Required Configuration Parameters:
+
+```
+    {
+      module:          "MMM-LocalEvents",
+      position:        "top_left",
+      config: {
+                eventProvider:  "google",
+                providerURL:    "https://www.google.com/search?q=events+[LOCATION]&events&rciv=evn",
+                location:       "fond du lac, wi",
+              }
+    },
+```
+- All Configuration Parameters:
 ```
     {
       module:          "MMM-LocalEvents",
@@ -54,5 +68,4 @@ Pull requests are welcome.
 
 ## TO DO
 - Replace \x27, \x26, \u2019, &amp with characters in event text
-- Consider adding functionality for a type:  daily/nextweek/nextmonth/etc.
-- 
+- Consider adding functionality for a type:  daily/nextweek/nextmonth/etc. 
