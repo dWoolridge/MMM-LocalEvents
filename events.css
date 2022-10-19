@@ -1,0 +1,23 @@
+.events table {
+  border-collapse: collapse;
+}
+
+.events tr, .events td {
+  border-bottom: 1pt solid #808080;
+  font-size: 90%;
+}
+
+.events td.dateCol {
+  padding: 2px 15px 2px 0px;
+  vertical-align: text-top;
+  text-align: center;
+  border-right: 1pt solid #808080;
+}
+
+.events div.widthLimited {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+

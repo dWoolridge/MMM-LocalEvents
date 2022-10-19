@@ -1,0 +1,33 @@
+{% if eventList %}
+    {% set startSlice = eventList | calcStartEntry %}
+    {% set endSlice = eventList | calcEndEntry %}
+
+    {% set currentStep = 0 %}
+    <table class="{{ config.tableClass }} events xsmall">
+        {% set events = eventList.slice(startSlice, endSlice) %}
+        {% for event in events %}
+            <tr {% if config.fade %}style="opacity: {{ currentStep | opacity }};"{% endif %}>
+                <td class="dateCol">
+                  {{ event.eventStart | formatDate }}<br>
+                  {{ event.eventStart | formatTime }}
+                </td>
+                <td style="max-width: 200px;">
+                  <div class="bold widthLimited">
+                    {{ event.eventTitle }}<br>
+                  </div>
+                  <div class="widthLimited" style="font-size: 85%">
+                    ({{ event.eventLocation }})
+                  </div>
+                </td>
+            </tr>
+            {% set currentStep = currentStep + 1 %}
+        {% endfor %}
+    </table>
+{% else %}
+    <div class="dimmed light small">
+        {{ "LOADING" | translate }}
+    </div>
+{% endif %}
+
+<!-- Uncomment the line below to see the contents of the `hourly` object. -->
+<!-- <div style="word-wrap:break-word" class="xsmall dimmed">{{eventList | dump}}</div>  -->
