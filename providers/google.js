@@ -34,8 +34,23 @@ EventProvider.register("google", {
                 this.config.apiBase = "https://google.com";
         },
 
-        // Called when the weather provider is about to start.
+        // Called when the event provider is about to start.
         start: function () {
+                modLocation = "";
+
+                // Configure this.config.modLocation
+                modLocation = this.config.location.replace(/ /g,'+');
+                modLocation = modLocation.replace(/,/g,'%2C');
+
+                this.eventURL = this.config.providerURL.replace(/\[LOCATION\]/g,modLocation);
+
+                if ( this.config.eventType ) {
+                        modLocation = this.config.eventType + "+";
+                } else {
+                        modLocation = "";
+                }
+
+                this.eventURL = this.eventURL.replace(/\[TYPE\]/g,modLocation);
                 Log.info(`Event provider: ${this.providerName} started.`);
         },
 
@@ -52,8 +67,8 @@ EventProvider.register("google", {
         },
 
         // Overwrite the fetchEventList method.
-        fetchEventList() {
-                this.sendSocketNotification("GET_DATA_FROM_URL",this.config.providerURL);
+        fetchEventList: function () {
+                this.delegate.sendSocketNotification("GET_DATA_FROM_URL",this.eventURL);
         },
 
         notificationReceived: function (notification, payload, sender) {
@@ -62,7 +77,7 @@ EventProvider.register("google", {
 
         /** Google.com Specific Methods - These are not part of the default provider methods */
 
-        eventArrayFromGooglePage(pageData) {
+        eventArrayFromGooglePage: function(pageData) {
                 eventArray = [];
                 curPos = 0;
                 titleEnd = 0;
@@ -164,7 +179,7 @@ EventProvider.register("google", {
                 return(eventArray);
         },
 
-        getSliceFromURL(startPos, startString, endString, data) {
+        getSliceFromURL: function(startPos, startString, endString, data) {
                 var sliceText = "";
                 var curPos = 0; 
                 var endPos = 0; 
