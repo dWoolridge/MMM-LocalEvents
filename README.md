@@ -1,5 +1,5 @@
 # MMM-LocalEvents
-## This module for MagicMirror² displays upcoming (local) events for the specified location.  Allows you to specify how many days in the future to get events for.  Written following the structure of the MagicMirror weather module where additional event providers can be written.  Currently supports Google as a provider.
+## This module for MagicMirror² displays upcoming (local) events for the specified location.  Cycles through pages with the specified animation time.  Written following the structure of the MagicMirror weather module where additional event providers can be written.  Currently supports Google as a provider.
 
 ![Screen shot](img/LocalEvents_ScreenShot.png)
 
