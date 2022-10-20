@@ -78,14 +78,13 @@ EventProvider.register("google", {
                 while ( URLdata.endPos > 0 ) {
                         event = new EventObject();
                         tDate = "";
-                        event.eventTitle = URLdata.sliceText;
+                        event.eventTitle = this.decodeUnicode(URLdata.sliceText);
                         curPos = titleEnd;
-                        event.eventTitle = URLdata.sliceText;
 
                         // LOCATION
                         URLdata = this.getSliceFromURL( curPos, '<div class="TCYkdd FozYP"><span>', '</span></div>', pageData);
                         if ( URLdata.endPos >= 0 ) {
-                                event.eventLocation = URLdata.sliceText;
+                                event.eventLocation = this.decodeUnicode(URLdata.sliceText);
                                 curPos = URLdata.endPos;
                         }
                         // DATE
@@ -126,14 +125,13 @@ EventProvider.register("google", {
                 while ( URLdata.endPos > 0 ) {
                         event = new EventObject();
                         tDate = "";
-                        event.eventTitle = URLdata.sliceText;
+                        event.eventTitle = this.decodeUnicode(URLdata.sliceText);
                         curPos = titleEnd;
-                        event.eventLocation = URLdata.sliceText;
 
                         // LOCATION
                         URLdata = this.getSliceFromURL( curPos, String.raw`class\x3d\x22TCYkdd FozYP\x22\x3e\x3cspan\x3e`, String.raw`\x3c`, pageData);
                         if ( URLdata.endPos >= 0 ) {
-                                event.eventLocation = URLdata.sliceText;
+                                event.eventLocation = this.decodeUnicode(URLdata.sliceText);
                                 curPos = URLdata.endPos;
                         }
 
@@ -205,6 +203,14 @@ EventProvider.register("google", {
 
                 }
                 return newDate;
+        },
+        decodeUnicode: function(inStr) {
+                inStr = inStr.replace("\\u2019","'");
+                inStr = inStr.replace("\\x26","&");
+                inStr = inStr.replace("\\x27","'");
+                inStr = inStr.replace("&amp;","&");
+
+                return inStr;
         },
 })
 
