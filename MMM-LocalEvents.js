@@ -11,8 +11,10 @@ Module.register("MMM-LocalEvents", {
         // Default module config.
         defaults: {
                 eventProvider:  "google",
-                providerURL:    "https://www.google.com/search?q=events+[LOCATION]&events&rciv=evn",
+                providerURL:    "https://www.google.com/search?q=[TYPE]events+[LOCATION]&events&rciv=evn",
                 location:       "fond du lac, wi",
+                eventType:       "",                 // "sports/movie/theater" leave blank for no filtering
+
                 reloadInterval:  10 * 60 * 1000,     // time to reload event data (in ms -- 10 minutes)
                 updateInterval:  10 * 1000,          // time to cycle through pages (in ms -- 10 seconds)
                 maxRows:         8,                  // Number of rows to display on the screenN
@@ -68,19 +70,18 @@ Module.register("MMM-LocalEvents", {
         start: function () {
                 moment.locale(this.config.lang);
                 this.curDate = moment();
-                modLocation = "";
 
-                // Configure this.config.modLocation
-                modLocation = this.config.location.replace(/ /g,'+');
-                modLocation = modLocation.replace(/,/g,'%2C');
- 
-                // Configure the URL
-                this.config.providerURL = this.config.providerURL.replace(/\[LOCATION\]/g,modLocation);
+//                modLocation = "";
+//                // Configure this.config.modLocation
+//                modLocation = this.config.location.replace(/ /g,'+');
+//                modLocation = modLocation.replace(/,/g,'%2C');
+//                // Configure the URL
+//                this.config.providerURL = this.config.providerURL.replace(/\[LOCATION\]/g,modLocation);
 
                 // Initialize the event provider.
                 this.eventProvider = EventProvider.initialize(this.config.eventProvider, this);
 
-                // Let the weather provider know we are starting.
+                // Let the weather event know we are starting.
                 this.eventProvider.start();
 
                 // Add custom filters
@@ -149,15 +150,7 @@ Module.register("MMM-LocalEvents", {
                         nextLoad = delay;
                 }
                 setTimeout(() => {
-//                        switch (this.config.type.toLowerCase()) {
-//                                case "upcoming":
-//                                case "nextweek":
-//                                case "nextmonth":
-                                  this.sendSocketNotification("GET_DATA_FROM_URL",this.eventProvider.config.providerURL);
-//                                        break;
-//                                default:
-//                                        Log.error(`Invalid type ${this.config.type} configured (must be one of 'upcoming', 'nextweek', 'nextmonth')`);
-//                        }
+                                  this.eventProvider.fetchEventList();
                 }, nextLoad);
         },
 

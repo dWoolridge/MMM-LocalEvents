@@ -125,23 +125,24 @@ const EventProvider = Class.extend({
                 this.startDate = this.startDate.startOf('day');
  
                 // Calculate the startDate to filter the array
-                if ( this.config.ignoreToday && this.config.type.toLowerCase() === "upcoming" ) {
+                if ( this.config.ignoreToday ) {
                         this.startDate = this.startDate.add(1, 'days');
-                } else {
-                        switch ( this.config.type.toLowerCase() ) {
-                                case "nextweek":
-                                        // Find the next Sunday, that becomes the startDate
-                                        this.startDate = this.startDate.add( 7 - this.startDate.day(), 'days');
-                                        break;
-                                case "nextmonth":
-                                        // Find the next first of the Month, that becomes the startDate
-                                        this.startDate = moment(this.curDate.format("YYYY-MM-01"));
-                                        this.startDate = this.startDate.add(1,'M');
-                                        break;
-                                //Make the invalid values use the "Loading..." from events
-                                default:
-                        }
-                }
+                } 
+//                else {
+//                        switch ( this.config.type.toLowerCase() ) {
+//                                case "nextweek":
+//                                        // Find the next Sunday, that becomes the startDate
+//                                        this.startDate = this.startDate.add( 7 - this.startDate.day(), 'days');
+//                                        break;
+//                                case "nextmonth":
+//                                        // Find the next first of the Month, that becomes the startDate
+//                                        this.startDate = moment(this.curDate.format("YYYY-MM-01"));
+//                                        this.startDate = this.startDate.add(1,'M');
+//                                        break;
+//                                //Make the invalid values use the "Loading..." from events
+//                                default:
+//                        }
+//                }
                 this.startDateCalculated = true;
         },
 
