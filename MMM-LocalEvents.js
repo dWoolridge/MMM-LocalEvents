@@ -155,8 +155,7 @@ Module.register("MMM-LocalEvents", {
         },
 
         scheduleUpdate: function () {
-                if ( this.config.cycleEventPages && this.config.updateInterval > 0 ) {
-                
+                if ( this.config.cycleEventPages && this.config.updateInterval > 0  && (this.config.maxEvents == -1 || this.config.maxEvents - this.config.maxRows > 0 ) ) {
                         setTimeout(() => {
                                 // Update code here
                                 if ( this.eventProvider.currentEventObject ) {
