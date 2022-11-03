@@ -48,9 +48,8 @@ npm install
                 cycleEventPages: true,               // If number of events > maxRows, then cycle through pages of events
                 animationSpeed:  2 * 1000,           // Set to 0 for no animation (fade-out / fade-in)
 
-                timeFormat:       config.timeFormat,
-                lang:             config.language,
-
+                timeFormat:       12,                // 12 or 24
+                
                 ignoreToday:      false,             // Don't list any events ocurring today
 
                 fade:             false,             // Fade out the last several rows
