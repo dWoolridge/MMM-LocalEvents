@@ -23,7 +23,10 @@ module.exports = NodeHelper.create({
          maxBodyLength:    Infinity
        })
            .then(function(response){
-                self.sendSocketNotification('RECEIVED_DATA_FROM_URL', response.data);
+                tempPayload = response.data;
+                tempPayload = tempPayload.replace(/[\u202f]/g,' ');
+
+                self.sendSocketNotification('RECEIVED_DATA_FROM_URL', tempPayload);
            }).catch(function(err){
                 self.sendSocketNotification('RECEIVED_DATA_FROM_URL', "null");
            });
